@@ -1,16 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "saveFile.h"
+#include "prototypes.h"
 #define MAX_CHAR_LIMIT 35
 
 void interactUser(char cN[], char cC[], char pW[], int st[], double ht, float hp, bool iQL) {
 
     char *descriptions[] = {"Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"};
     char leaderResponse[4];
+    struct stats *current = NULL;
+    current->next = calloc(1, sizeof (char*));
 
     printf("What is your player name?: ");
-    fgets(cN, MAX_CHAR_LIMIT, stdin);
+    fgets(current->characterName, MAX_CHAR_LIMIT, stdin);
+
     printf("What is your player class? (Warrior, Bard, Mage etc.?): ");
     fgets(cC, MAX_CHAR_LIMIT, stdin);
     printf("What is your preferred weapon?: ");
@@ -36,6 +40,7 @@ void interactUser(char cN[], char cC[], char pW[], int st[], double ht, float hp
         scanf("%d", &st[i]);
     }
 
+    struct stats params;
     saveFile(cN, cC, pW, st, ht, hp, iQL);
     
 }
