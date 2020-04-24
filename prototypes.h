@@ -6,9 +6,9 @@
 #include <stdbool.h>
 
 struct stats{
-    char characterName[35];
-    char characterClass[35]; //Barbarian, mage, necromancer, bard, warrior?
-    char preferredWeapon[35];
+    char characterName[32];
+    char characterClass[32]; //Barbarian, mage, necromancer, bard, warrior?
+    char preferredWeapon[32];
     int stats[6]; //Should be strength, dexterity, constitution, intelligence, wisdom, and charisma scores
     double height;
     float hitPoints;
@@ -16,7 +16,7 @@ struct stats{
     struct stats *next;
 };
 
-extern void interactUser(char cN[], char cC[], char pW[], int st[], double ht, float hp, bool iQL);
+extern void interactUser(struct stats* record);
 extern void saveFile(char cN[], char cC[], char pW[], int st[], double ht, float hp, bool iQL);
 
 #endif
