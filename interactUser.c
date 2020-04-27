@@ -118,4 +118,5 @@ void interactUser(struct Stats* record) {
     //struct Stats record;
     saveFile(&record);
     
+    //printf("%s", getStats(&record, 2) -> preferredWeapon);
 }
