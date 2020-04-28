@@ -8,9 +8,9 @@
 
 typedef struct Stats
 {
-    char characterName[32];
-    char characterClass[32]; //Barbarian, mage, necromancer, bard, warrior?
-    char preferredWeapon[32];
+    char characterName[35];
+    char characterClass[35]; //Barbarian, mage, necromancer, bard, warrior?
+    char preferredWeapon[35];
     int stats[6]; //Should be strength, dexterity, constitution, intelligence, wisdom, and charisma scores
     double height;
     float hitPoints;
