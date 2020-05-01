@@ -18,7 +18,6 @@ typedef struct Stats
     struct Stats* next;
 } Stats;
 
-
 extern void interactUser(struct Stats* record);
 extern void saveFile(struct Stats* record);
 

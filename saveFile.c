@@ -10,7 +10,7 @@ void saveFile(struct Stats* record) {
 
     char temp[50];
     char s[10] = {'0','x', '0', '0', '4', '0', '1', '1', 'F', '3'};//Meant to look like a hex address
-    int d = 0; //XOR for ints and floats
+    
     memcpy(temp, record -> characterName, 35);
 
     size_t len = strlen(temp);
@@ -47,21 +47,54 @@ void saveFile(struct Stats* record) {
 
     fputs(temp, fp);
 
-    //Stuck here, keeps returning zeroes from int array
-    //i'm probably not referencing properly, but I haven't
-    //figured how to reference this memeber properly here.
     record = record -> next;
+      
+    sprintf(temp, "%d", record -> isQuestLeader);//send XOR'd non char values through a buffer so that they can be written
     
-    for (int i = 0; i < 6; i++) {
-       
-       d ^= record -> stats[i];
-       printf("%d", d);
+    len = strlen(temp);
+
+    for (int i = 0; i < len; i++) {
+        temp[i] = temp[i] ^ s[i % (sizeof(s) / sizeof(char))];
     }
 
-    for (int i = 0; i < 6; i++) {
-        record -> stats[i] = d ^ record -> stats[i];
-        printf("%d", record -> stats[i]);
-    }
+    fputs(temp, fp);
+
+    record = record -> next;
+
+    sprintf(temp, "%lf", record -> height);
     
+    len = strlen(temp);
+
+    for (int i = 0; i < len; i++) {
+        temp[i] = temp[i] ^ s[i % (sizeof(s) / sizeof(char))];
+    }
+
+    fputs(temp, fp);
+
+    record = record -> next;
+
+    sprintf(temp, "%f", record -> hitPoints);
+    
+    len = strlen(temp);
+
+    for (int i = 0; i < len; i++) {
+        temp[i] = temp[i] ^ s[i % (sizeof(s) / sizeof(char))];
+    }
+
+    fputs(temp, fp);
+
+    record = record -> next;
+
+    for (int i = 0; i < 6; i++) {
+        sprintf(temp, "%d", record -> stats[i]);
+        len = strlen(temp);
+        for (int j = 0; j < len; j++) {
+            temp[j] = temp[j] ^ s[j % (sizeof(s) / sizeof(char))];
+
+        }
+        fputs(temp, fp);
+    }
+
+      
     return;
 }
