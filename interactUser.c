@@ -28,6 +28,12 @@ void interactUser(struct Stats* record) {
 
     printf("What is your preferred weapon?: ");
     fgets(current->preferredWeapon, MAX_CHAR_LIMIT, stdin);
+
+    current -> next = calloc(1,sizeof(struct Stats));
+    current = current -> next;
+
+    printf("What is your primary language? (English, Spanish, Reptilian?) ");
+    fgets(current -> primaryLanguage, MAX_CHAR_LIMIT, stdin);
     
     // TODO add no as a possible answer.
     // Done with else catch
@@ -70,53 +76,17 @@ void interactUser(struct Stats* record) {
         scanf("%d", &current->stats[i]);
     }
     
-    
-    // Check to see if data is loaded properly into nodes.
-    current = &record; 
-    printf("%s", current->characterName);
+    current -> next = calloc(1,sizeof(struct Stats));
     current = current -> next;
-    printf("%s", current->characterClass);
-    current = current -> next;
-    printf("%s", current->preferredWeapon);
-    current = current -> next;
-    printf("%d\n", current->isQuestLeader);
-    current = current -> next;
-    printf("%f\n", current->height);
-    current = current -> next;
-    printf("%f\n", current->hitPoints);
-    current = current -> next;
-    for (int i = 0; i < 6; i++) {
-        printf("%d\n", current -> stats[i]);
-    }
 
-   
-   
-    //This would work if we are storing multiple pieces of data in a single data type i.E:
-    //int data, and we keep adding values to this. However, because all of our variables are
-    //independent and have different data types, we have to manually increment through them
-    //and call the individual member variables, as seen above.
-    /*for(current = &record; current != NULL; current = current->next)
-    {   
-        printf(current);
-        if(current->characterName != NULL)
-            printf("%s\n", current->characterName);
-        else if (current->characterClass != NULL)
-            printf("%s\n", current->characterClass);
-        else if(current->preferredWeapon != NULL)
-            printf("%s\n", current->preferredWeapon);
-        else if(current->isQuestLeader !=NULL)
-            printf("%s\n", current->isQuestLeader);
-        else if(current->height > 0)
-            printf("%s\n", current->height);
-        else if(current->hitPoints > 0)
-            printf("%s\n", current->hitPoints);
-        else
-            printf("%s\n", current);
-    }*/
+    printf("What is your desired challenge level? (0-50) ");
+    scanf("%d", &current -> challengeLevel);
 
+    current -> next = calloc(1,sizeof(struct Stats));
+    current = current -> next;
 
-    //struct Stats record;
+    printf("What is your armor class? (0-10) ");
+    scanf("%d", &current -> armorClass);
+           
     saveFile(&record);
-    
-    //printf("%s", getStats(&record, 2) -> preferredWeapon);
 }

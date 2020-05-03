@@ -15,10 +15,14 @@ typedef struct Stats
     double height;
     float hitPoints;
     bool isQuestLeader;
+    char primaryLanguage[35];
+    int challengeLevel;
+    int armorClass;
     struct Stats* next;
 } Stats;
 
 extern void interactUser(struct Stats* record);
 extern void saveFile(struct Stats* record);
+extern char *hashCheck();
 
 #endif

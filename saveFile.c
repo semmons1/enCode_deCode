@@ -48,6 +48,18 @@ void saveFile(struct Stats* record) {
     fputs(temp, fp);
 
     record = record -> next;
+
+    memcpy(temp, record -> primaryLanguage, 35);
+
+    len = strlen(temp);
+
+    for (int i = 0; i < len; i++) {
+        temp[i] = temp[i] ^ s[i % (sizeof(s) / sizeof(char))];
+    }
+
+    fputs(temp, fp);
+
+    record = record -> next;
       
     sprintf(temp, "%d", record -> isQuestLeader);//send XOR'd non char values through a buffer so that they can be written
     
@@ -95,6 +107,31 @@ void saveFile(struct Stats* record) {
         fputs(temp, fp);
     }
 
+    record = record -> next;
+
+    sprintf(temp, "%d", record -> challengeLevel);
+
+    len = strlen(temp);
+
+    for (int i = 0; i < len; i++) {
+        temp[i] = temp[i] ^ s[i % (sizeof(s) / sizeof(char))];
+    }
+
+    fputs(temp, fp);
+
+    record = record -> next;
+
+    sprintf(temp, "%d", record -> armorClass);
+
+    len = strlen(temp);
+
+    for (int i = 0; i < len; i++) {
+        temp[i] = temp[i] ^ s[i % (sizeof(s) / sizeof(char))];
+    }
+
+    fputs(temp, fp);
+
+    printf("%02x", hashCheck());
       
     return;
 }
