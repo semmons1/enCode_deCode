@@ -11,6 +11,8 @@ void saveFile(struct Stats* record) {
     char temp[50];
     char s[10] = {'0','x', '0', '0', '4', '0', '1', '1', 'F', '3'};//Meant to look like a hex address
     
+
+    //write charactername
     memcpy(temp, record -> characterName, 35);
 
     size_t len = strlen(temp);
@@ -130,8 +132,12 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    fclose(fp);
 
-    printf("%02x", hashCheck());
+
+    printf("%02x\n", hashCheck());
+
+    
       
     return;
 }

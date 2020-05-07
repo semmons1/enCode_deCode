@@ -16,8 +16,10 @@ char *hashCheck() {
     unsigned char data[1024];
 
     if (inFile == NULL) {
-        printf("%s can't be opened or does not exist. \n", fname);
-        return;
+       // printf("%s can't be opened or does not exist. \n", fname);
+        perror("fopen()");
+        exit(1);
+
     }
 
     MD5_Init (&mdCtx);
