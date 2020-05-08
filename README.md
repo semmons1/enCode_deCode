@@ -1,9 +1,14 @@
 # enCode_deCode
-A binary analysis project in C/C++, made to encode and decode variable information, along with detecting attempts to modify this information.<br>
-Really hard to read because C, but good place to start. Microsoft documentation is always quite good: → https://docs.microsoft.com/en-us/windows/win32/seccrypto/example-c-program-asn1-encoding-and-decoding
+This is a binary analysis project in C, made to encode and decode variable information based on a DnD game template, along with detecting attempts to modify this information.<br>
 
-Potentially useful five minute read → https://nachtimwald.com/2017/09/24/hex-encode-and-decode-in-c/
+## Requirements
+This project is built using the C language, and as a result requires the use of a C compiler. So please ensure that you have the GNU Compiler Collection, or another similar compiler present, and up-to-date on your machine. Since this a terminal-based program, this is the only requirement needed to compile and execute successfully. 
 
-Reading variable info into/from binary files → https://www.tutorialspoint.com/reading-and-writing-binary-file-in-c-cplusplus
+## Installation :rocket:
+Once downloaded or cloned, `cd` into the directory that holds this project, and execute the command `make`. This compiles all source code of this project into two executable files. One will be `encodeDecode`, this is the executable that should be run first. It will allow you enter your character attributes and statistics. Once you have finished with this, a file will be created with the information you have just entered. None of this information will be readable, as it will be encrypted. <br>
+The second executable this is produced from the makefile is "`fileRead`, this should be used to detect if any changes have been made to your character's information. This is achieved with a two step process: <br>
+**1.** The MD5 hash of the file is compared to when it was first encrypted. If anything has changed in terms of file information, this hash will also change. The user will be alerted if this is the case.<br>
+**2.** The user variable information is decrypted, and presented to the user. If anything looks different, the user will know that their file has been compromised.
 
-More good examples on reading data to and from binary files → https://www.eecs.umich.edu/courses/eecs380/HANDOUTS/cppBinaryFileIO-2.html
+## Usage :octacat:
+Need screenshots here of program being run.
