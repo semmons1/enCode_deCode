@@ -45,7 +45,7 @@ void interactUser(struct Stats* record) {
     fgets(leaderResponse, 4, stdin);
     
     if (strcmp("Yes", leaderResponse) == 0) {
-        current->isQuestLeader = 1;;
+        current->isQuestLeader = 1;
     }
     else if (strcmp("yes", leaderResponse) == 0) {
         current->isQuestLeader = 1; 
