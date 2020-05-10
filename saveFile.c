@@ -2,19 +2,25 @@
 #include <stdbool.h>
 #include <string.h>
 #include "prototypes.h"
-//Will probably need more imports
+
 
 void saveFile(struct Stats* record) {
     FILE *fp;
-    fp = fopen("outfile.txt", "w");
-
-    char temp[50];
-    char s[10] = {'0','x', '0', '0', '4', '0', '1', '1', 'F', '3'};//Meant to look like a hex address
+    
+    fp = fopen("outfile.txt", "wb");
     
 
-    //write charactername
-    memcpy(temp, record -> characterName, 35);
+    char temp[35];
+    //char s[10] = {'0','x', '0', '0', '4', '0', '1', '1', 'F', '3'};//Meant to look like a hex address
+    //char s[1] = {'B'};
+     char s[1] = { '*'};
 
+    
+    memset(temp, 0, sizeof(temp));
+
+    //write charactername
+    memcpy(temp, record->characterName, 35);
+    //fputs(temp, Test);
     size_t len = strlen(temp);
     
     for (int i = 0; i < len; i++) {
@@ -22,7 +28,9 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
-    
+    memset(temp, 0, sizeof(temp));
+
+
     //Select next member variable, rinse and repeat. 
     //kinda primitive, but can't see any other way :/
     record = record -> next;
@@ -36,6 +44,9 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+
+
 
     record = record -> next;
        
@@ -48,6 +59,9 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+
+
 
     record = record -> next;
 
@@ -60,10 +74,13 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    
 
+
+    memset(temp, 0, sizeof(temp));
     record = record -> next;
       
-    sprintf(temp, "%d", record -> isQuestLeader);//send XOR'd non char values through a buffer so that they can be written
+    sprintf(temp, "%d\n", record -> isQuestLeader);//send XOR'd non char values through a buffer so that they can be written
     
     len = strlen(temp);
 
@@ -72,10 +89,12 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+    
 
     record = record -> next;
 
-    sprintf(temp, "%lf", record -> height);
+    sprintf(temp, "%lf\n", record -> height);
     
     len = strlen(temp);
 
@@ -84,10 +103,12 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+
 
     record = record -> next;
 
-    sprintf(temp, "%f", record -> hitPoints);
+    sprintf(temp, "%f\n", record -> hitPoints);
     
     len = strlen(temp);
 
@@ -96,22 +117,27 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+
+
 
     record = record -> next;
 
     for (int i = 0; i < 6; i++) {
-        sprintf(temp, "%d", record -> stats[i]);
+        sprintf(temp, "%d\n", record -> stats[i]);
         len = strlen(temp);
         for (int j = 0; j < len; j++) {
             temp[j] = temp[j] ^ s[j % (sizeof(s) / sizeof(char))];
 
         }
         fputs(temp, fp);
-    }
+        memset(temp, 0, sizeof(temp));
 
+
+    }
     record = record -> next;
 
-    sprintf(temp, "%d", record -> challengeLevel);
+    sprintf(temp, "%d\n", record -> challengeLevel);
 
     len = strlen(temp);
 
@@ -120,10 +146,14 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+
+
+   
 
     record = record -> next;
 
-    sprintf(temp, "%d", record -> armorClass);
+    sprintf(temp, "%d\n", record -> armorClass);
 
     len = strlen(temp);
 
@@ -132,10 +162,13 @@ void saveFile(struct Stats* record) {
     }
 
     fputs(temp, fp);
+    memset(temp, 0, sizeof(temp));
+
     fclose(fp);
 
 
-    printf("%02x\n", hashCheck());
+   //int rtn = printf("%02x\n", hashCheck());
+    
 
     
       
