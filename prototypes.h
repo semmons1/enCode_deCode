@@ -23,6 +23,6 @@ typedef struct Stats
 
 extern void interactUser(struct Stats* record);
 extern void saveFile(struct Stats* record);
-extern char *hashCheck();
+extern char *hashCheck(char *fileName);
 
 #endif
