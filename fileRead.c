@@ -49,10 +49,20 @@ int main(int argc, char *argv[])
     //############################################
     //for the hash check
 
-    fgets(buffer, 50, fp);
+    /*fgets(buffer, 516, fp);
     fputs(buffer, hashCheckFile);
     fclose(fp);
-    fclose(hashCheckFile);
+    fclose(hashCheckFile);*/
+    int data;
+    do{
+        data = fgetc(fp);
+        if(feof(fp))
+        {
+            //fputc(data, hashCheckFile);
+            break;
+        }
+        fputc(data, hashCheckFile);
+    }while(1);
 
     //############################################
 
