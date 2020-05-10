@@ -10,5 +10,8 @@ The second executable this is produced from the makefile is `fileRead`, this sho
 **1.** The MD5 hash of the file is compared to when it was first encrypted. If anything has changed in terms of file information, this hash will also change. The user will be alerted if this is the case.<br>
 **2.** The user variable information is decrypted, and presented to the user. If anything looks different, the user will know that their file has been compromised.
 
+## Compilation on Windows
+Once downloaded or cloned, `cd` into the directory that holds this project.  Unlike compilation in a Linux environment, `make` will not work in a Windows environment. Instead, `GCC` should be used. Usage Example: `GCC main.c interactUser.c saveFile.c -o encodeDecode.exe`. This will create executible file that can be run.  To run an executible in the terminal simply type progamName.exe. Usage example: `encodeDecode.exe`.  Due to this project being developed in a Linux environment, the second program fileRead.c is difficult to compile.  Additional libraries would be needed for compliation on windows, such as Win32 openSSL.  We recommend this program be run in a Linux environment to avoid the need to install additional libraries.  
+
 ## Usage :octocat:
 Need screenshots here of program being run.
