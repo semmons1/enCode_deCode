@@ -1,16 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "prototypes.h"
 #include "hashCheck.c"
 
 int main(int argc, char *argv[]) 
 {
     FILE *fp, *outFile, *hashCheckFile;
-    //char s[10] = {'0','x', '0', '0', '4', '0', '1', '1', 'F', '3'};//Meant to look like a hex address
-    //char s[1] = {'B'};
     char s[1] = { '*'};
-   char buffer[50];
+    char buffer[50];
 
     //handle usage errors
     if(argc==1)
@@ -49,16 +46,11 @@ int main(int argc, char *argv[])
     //############################################
     //for the hash check
 
-    /*fgets(buffer, 516, fp);
-    fputs(buffer, hashCheckFile);
-    fclose(fp);
-    fclose(hashCheckFile);*/
     int data;
     do{
         data = fgetc(fp);
         if(feof(fp))
         {
-            //fputc(data, hashCheckFile);
             break;
         }
         fputc(data, hashCheckFile);
@@ -78,17 +70,13 @@ int main(int argc, char *argv[])
     int c;
     do{
         c = fgetc(fp);
-        //fputc(c,hashCheckFile);
         c = c ^ s[c % (sizeof(s)/sizeof(char))];
         if(feof(fp))
         {
-            //fputc(c, outFile);
             break;
         }
-        //printf("%c", c);
        
        fputc(c, outFile);
-       //fputc(c,"decoded.txt");
         
     }while(1);
     fclose(fp);

@@ -35,9 +35,6 @@ void interactUser(struct Stats* record) {
     printf("What is your primary language? (English, Spanish, Reptilian?) ");
     fgets(current -> primaryLanguage, MAX_CHAR_LIMIT, stdin);
     
-    // TODO add no as a possible answer.
-    // Done with else catch
-
     current->next = calloc(1,sizeof(struct Stats));
     current = current->next;
 

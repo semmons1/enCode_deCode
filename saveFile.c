@@ -11,16 +11,13 @@ void saveFile(struct Stats* record) {
     
 
     char temp[35];
-    //char s[10] = {'0','x', '0', '0', '4', '0', '1', '1', 'F', '3'};//Meant to look like a hex address
-    //char s[1] = {'B'};
-     char s[1] = { '*'};
+    char s[1] = { '*'};
 
     
     memset(temp, 0, sizeof(temp));
 
     //write charactername
     memcpy(temp, record->characterName, 35);
-    //fputs(temp, Test);
     size_t len = strlen(temp);
     
     for (int i = 0; i < len; i++) {
@@ -165,12 +162,7 @@ void saveFile(struct Stats* record) {
     memset(temp, 0, sizeof(temp));
 
     fclose(fp);
-
-
-   //int rtn = printf("%02x\n", hashCheck());
-    
-
-    
+  
       
     return;
 }
